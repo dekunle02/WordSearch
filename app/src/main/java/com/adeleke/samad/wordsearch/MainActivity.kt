@@ -54,44 +54,7 @@ class MainActivity : AppCompatActivity() {
         hint_button.setOnClickListener { view->
             viewModel.showHint()
         }
-
-//        boardContainer = findViewById(R.id.board_container)
-//        board = Board.makeDefaultGameBoard()
-//        boardView = BoardViewMaker.makeBoardView(this, board)
-//        currentWordTV = findViewById(R.id.tv_current_word)
-//        insertBoardIntoContainer()
-//
-//        allWordsGridView = findViewById(R.id.gv_all_words)
-//        loadAllHiddenWords()
-//
-//        boardView.setOnTouchListener(object : View.OnTouchListener {
-//            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-//                when (event!!.action) {
-//                    MotionEvent.ACTION_DOWN -> {
-//                        getLetterViewAtPoint(event.x, event.y)
-//                        updateCurrentWordTv()
-//                    }
-//                    MotionEvent.ACTION_MOVE -> {
-//                        getLetterViewAtPoint(event.x, event.y)
-//                        updateCurrentWordTv()
-//                    }
-//
-//                    MotionEvent.ACTION_UP -> {
-//                        getLetterViewAtPoint(event.x, event.y)
-//                        checkIfWordIsCorrect()
-//                        updateCurrentWordTv()
-//                    }
-//                }
-//                return true
-//            }
-//
-//        })
-//
-//        updateCurrentWordTv()
-//
-//        restart_button.setOnClickListener { v ->
-//            strikeOutWordOnBoard("sth")
-//        }
+        
     }
 
     private fun strikeOutFoundWord(word: String) {
@@ -99,75 +62,7 @@ class MainActivity : AppCompatActivity() {
         val textView = gv_all_words.getChildAt(index) as TextView
         textView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
     }
-//    private fun getLetterViewAtPoint(x: Float, y: Float) {
-//        for (index in 0..boardView.childCount) {
-//            val childView = boardView.getChildAt(index);
-//            val bounds = Rect();
-//
-//            if (childView != null) {
-//                childView.getHitRect(bounds);
-//                if (bounds.contains(x.toInt(), y.toInt())) {
-//                    if (childView is BoardLetterView) {
-//                        addToTouchedLetterViews(childView)
-//                    }
-//                }
-//            }
-//        }
-//        getCurrentWordFromTouchedLetters()
-//    }
-//
-//    private fun getCurrentWordFromTouchedLetters() {
-//        val sb = StringBuilder()
-//        for (view in touchedLetterViews) {
-//            sb.append(view.text)
-//        }
-//        currentWord = sb.toString()
-//    }
-//
-//    private fun checkIfWordIsCorrect() {
-//        if (currentWord in allWords) {
-//            strikeOutFoundWord(currentWord)
-//            strikeOutWordOnBoard(currentWord)
-//        }
-//        currentWord = ""
-//        touchedLetterViews.clear()
-//    }
-//
-//    private fun addToTouchedLetterViews(view: BoardLetterView) {
-//        if (touchedLetterViews.isEmpty()) {
-//            touchedLetterViews.add(view)
-//        } else if (view.id != touchedLetterViews[touchedLetterViews.size - 1].id) {
-//            touchedLetterViews.add(view)
-//        }
-//    }
-//
-//    private fun insertBoardIntoContainer() {
-//        val layoutParams = FrameLayout.LayoutParams(
-//            ViewGroup.LayoutParams.WRAP_CONTENT,
-//            ViewGroup.LayoutParams.WRAP_CONTENT
-//        )
-//        layoutParams.marginEnd = 10
-//        layoutParams.gravity = Gravity.CENTER
-//        boardView.layoutParams = layoutParams
-//        boardContainer.addView(boardView)
-//        allWords = board.getWords()
-//    }
-//
-//    private fun loadAllHiddenWords() {
-//        val gridViewAdapter =
-//            MyGridViewAdapter(this, allWords)
-//        allWordsGridView.adapter = gridViewAdapter
-//    }
-//
 
-//
-//    private fun strikeOutWordOnBoard(word: String) {
-//        val myView = boardView.findViewWithTag<BoardLetterView>("0,1")
-//        3
-//    }
-//
-//    private fun updateCurrentWordTv() {
-//        currentWordTV.setText(currentWord)
 }
 
 
