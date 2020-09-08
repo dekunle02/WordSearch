@@ -27,17 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_current_word"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="OBJECTIVEC"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_info" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/restart_button"
             android:layout_width="wrap_content"
@@ -59,7 +48,6 @@
             android:layout_marginEnd="16dp"
             android:text="@string/hint"
             app:icon="@drawable/ic_hint"
-            app:layout_constraintBottom_toBottomOf="@id/tv_current_word"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/restart_button" />
 
@@ -67,11 +55,11 @@
             android:id="@+id/board_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:background="@drawable/board_background"
+            app:layout_constraintTop_toBottomOf="@+id/hint_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_current_word" />
+            tools:layout_editor_absoluteY="99dp" />
 
         <GridView
             android:id="@+id/gv_all_words"

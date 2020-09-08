@@ -1,7 +1,9 @@
 package com.adeleke.samad.wordsearch
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -34,12 +36,24 @@ class MainActivity : AppCompatActivity() {
         )
 
         viewModel.boardView.observe(this, Observer { view ->
+            board_container.removeAllViewsInLayout()
             board_container.addView(view)
         })
         viewModel.allWorldViewdapter.observe(this, Observer { adapter ->
             gv_all_words.adapter = adapter
         })
 
+        viewModel.correctAnswer.observe(this, Observer { correctAnswer->
+            strikeOutFoundWord(correctAnswer)
+        })
+
+        restart_button.setOnClickListener {view ->
+            viewModel.resetGame()
+        }
+
+        hint_button.setOnClickListener { view->
+            viewModel.showHint()
+        }
 
 //        boardContainer = findViewById(R.id.board_container)
 //        board = Board.makeDefaultGameBoard()
@@ -80,7 +94,11 @@ class MainActivity : AppCompatActivity() {
 //        }
     }
 
-
+    private fun strikeOutFoundWord(word: String) {
+        val index = viewModel.allWords.indexOf(word)
+        val textView = gv_all_words.getChildAt(index) as TextView
+        textView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+    }
 //    private fun getLetterViewAtPoint(x: Float, y: Float) {
 //        for (index in 0..boardView.childCount) {
 //            val childView = boardView.getChildAt(index);
@@ -141,11 +159,7 @@ class MainActivity : AppCompatActivity() {
 //        allWordsGridView.adapter = gridViewAdapter
 //    }
 //
-//    private fun strikeOutFoundWord(word: String) {
-//        val index = allWords.indexOf(word)
-//        val textView = allWordsGridView.getChildAt(index) as TextView
-//        textView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-//    }
+
 //
 //    private fun strikeOutWordOnBoard(word: String) {
 //        val myView = boardView.findViewWithTag<BoardLetterView>("0,1")

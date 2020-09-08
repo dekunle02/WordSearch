@@ -169,76 +169,78 @@ class Board private constructor(dimension: Int, wordsList: List<String>) {
         fillEmptySpaces()
     }
 
-//    fun wordAndDirectionFromTag(start: String, end: String): Pair<BoardLetterView.LineDirection, MutableList<IntArray>> {
-//        val x = intArrayOf(start.split(",")[0].toInt(), end.split(",")[0].toInt())
-//        val y = intArrayOf(start.split(",")[1].toInt(), end.split(",")[1].toInt())
-//        var direction = BoardLetterView.LineDirection.OFF
-//
-//
-//        val wordCoordinates = mutableListOf<IntArray>()
-//
-//        val minX = minOf(x[0], x[1])
-//        val maxX = maxOf(x[0], x[1])
-//        val minY = minOf(y[0], y[1])
-//        val maxY = maxOf(y[0], y[1])
-//
-//        when {
-//            x[0] == x[1] -> {
-//                direction = BoardLetterView.LineDirection.HOR
-//                for (i in minY..maxY) {
-//                    wordCoordinates.add(intArrayOf(x[0], i))
-//                }
-//            }
-//            y[0] == y[1] -> {
-//                direction = BoardLetterView.LineDirection.VERT
-//                for (i in minX..maxX) {
-//                    wordCoordinates.add(intArrayOf(i, y[0]))
-//                }
-//            }
-//            else -> {
-//                direction = if (x[0] > x[1]) BoardLetterView.LineDirection.LDIAG else BoardLetterView.LineDirection.RDIAG
-//                for (i in minX..maxY) {
-//                    wordCoordinates.add(intArrayOf(i, i))
-//                }
-//            }
-//        }
-//        println("wordcoordinatesize " + wordCoordinates.size)
-//        for (cordinate in wordCoordinates) {
-//            println(cordinate.contentToString())
-//        }
-//        return Pair(direction, wordCoordinates)
-//    }
-fun getWordFromEndPoints(start: String, end: String): MutableList<IntArray> {
-    val x = intArrayOf(start.split(",")[0].toInt(), end.split(",")[0].toInt())
-    val y = intArrayOf(start.split(",")[1].toInt(), end.split(",")[1].toInt())
+    fun getWordFromEndPoints(start: String, end: String): Pair<BoardLetterView.LineDirection, MutableList<IntArray>> {
+        val x = intArrayOf(start.split(",")[0].toInt(), end.split(",")[0].toInt())
+        val y = intArrayOf(start.split(",")[1].toInt(), end.split(",")[1].toInt())
+        var direction = BoardLetterView.LineDirection.OFF
 
-    val wordCoordinates = mutableListOf<IntArray>()
 
-    val minX = minOf(x[0], x[1])
-    val maxX = maxOf(x[0], x[1])
-    val minY = minOf(y[0], y[1])
-    val maxY = maxOf(y[0], y[1])
+        val wordCoordinates = mutableListOf<IntArray>()
 
-    when {
-        x[0] == x[1] -> {
-            for (i in minY..maxY) {
-                wordCoordinates.add(intArrayOf(x[0], i))
+        val minX = minOf(x[0], x[1])
+        val maxX = maxOf(x[0], x[1])
+        val minY = minOf(y[0], y[1])
+        val maxY = maxOf(y[0], y[1])
+
+        when {
+            x[0] == x[1] -> {
+                direction = BoardLetterView.LineDirection.HOR
+                for (i in minY..maxY) {
+                    wordCoordinates.add(intArrayOf(x[0], i))
+                }
+            }
+            y[0] == y[1] -> {
+                direction = BoardLetterView.LineDirection.VERT
+                for (i in minX..maxX) {
+                    wordCoordinates.add(intArrayOf(i, y[0]))
+                }
+            }
+            else -> {
+                direction = if (x[0] > x[1]) BoardLetterView.LineDirection.LDIAG else BoardLetterView.LineDirection.RDIAG
+                for (i in minX..maxY) {
+                    wordCoordinates.add(intArrayOf(i, i))
+                }
             }
         }
-        y[0] == y[1] -> {
-            for (i in minX..maxX) {
-                wordCoordinates.add(intArrayOf(i, y[0]))
-            }
+        println("wordcoordinatesize " + wordCoordinates.size)
+        for (cordinate in wordCoordinates) {
+            println(cordinate.contentToString())
         }
-        else -> {
-            for (i in minX..maxY) {
-                wordCoordinates.add(intArrayOf(i, i))
-            }
-        }
+        return Pair(direction, wordCoordinates)
     }
 
-    return wordCoordinates
-}
+//
+//fun getWordFromEndPoints(start: String, end: String): MutableList<IntArray> {
+//    val x = intArrayOf(start.split(",")[0].toInt(), end.split(",")[0].toInt())
+//    val y = intArrayOf(start.split(",")[1].toInt(), end.split(",")[1].toInt())
+//
+//    val wordCoordinates = mutableListOf<IntArray>()
+//
+//    val minX = minOf(x[0], x[1])
+//    val maxX = maxOf(x[0], x[1])
+//    val minY = minOf(y[0], y[1])
+//    val maxY = maxOf(y[0], y[1])
+//
+//    when {
+//        x[0] == x[1] -> {
+//            for (i in minY..maxY) {
+//                wordCoordinates.add(intArrayOf(x[0], i))
+//            }
+//        }
+//        y[0] == y[1] -> {
+//            for (i in minX..maxX) {
+//                wordCoordinates.add(intArrayOf(i, y[0]))
+//            }
+//        }
+//        else -> {
+//            for (i in minX..maxY) {
+//                wordCoordinates.add(intArrayOf(i, i))
+//            }
+//        }
+//    }
+//
+//    return wordCoordinates
+//}
 
 }
 
