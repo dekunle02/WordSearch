@@ -1,13 +1,9 @@
 package com.adeleke.samad.wordsearch.views
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
-import android.view.MotionEvent
 
 
 class BoardLetterView : androidx.appcompat.widget.AppCompatTextView {
@@ -18,10 +14,9 @@ class BoardLetterView : androidx.appcompat.widget.AppCompatTextView {
     var currentLineDirection: LineDirection = LineDirection.OFF
 
     private fun setUpLinePaint() {
-        myLinePaint.color = (Color.BLUE)
         myLinePaint.style = (Paint.Style.STROKE)
-        myLinePaint.strokeWidth = measuredWidth.toFloat()
-        myLinePaint.strokeCap = Paint.Cap.ROUND
+        myLinePaint.strokeWidth = 60F
+        myLinePaint.strokeCap = Paint.Cap.SQUARE
         myLinePaint.isAntiAlias = true
     }
 
@@ -30,7 +25,8 @@ class BoardLetterView : androidx.appcompat.widget.AppCompatTextView {
         setUpLinePaint()
     }
 
-    fun setLineDirection(lineDirection: LineDirection) {
+    fun setLineDirection(lineDirection: LineDirection, color: Int) {
+        myLinePaint.color = color
         currentLineDirection = lineDirection
         postInvalidate()
     }

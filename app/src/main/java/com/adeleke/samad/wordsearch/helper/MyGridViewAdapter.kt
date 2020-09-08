@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.BaseAdapter
 import android.widget.TextView
-import androidx.core.view.ViewCompat
+import com.adeleke.samad.wordsearch.R
 
 class MyGridViewAdapter(context: Context, wordsList: MutableList<String>) : BaseAdapter() {
     private val data: MutableList<String> = wordsList
@@ -18,6 +18,7 @@ class MyGridViewAdapter(context: Context, wordsList: MutableList<String>) : Base
         wordTextView.gravity = TextView.TEXT_ALIGNMENT_CENTER
         wordTextView.setPadding(4, 4, 4, 4)
         wordTextView.text = (data[position])
+        wordTextView.setTextColor(mContext.resources.getColor(R.color.colorCream))
         return wordTextView
 }
 

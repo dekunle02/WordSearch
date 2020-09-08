@@ -13,7 +13,9 @@
         android:id="@+id/def_constr"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorNavyBlue"
         tools:context=".MainActivity">
+
 
         <TextView
             android:id="@+id/title_info"
@@ -22,10 +24,24 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/help_title"
+            android:textColor="@color/colorCream"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/restart_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_currentWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{gameViewModel.wordFromMove}"
+            style="@style/MyTextView"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toTopOf="@id/board_container"
+            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/hint_button"
+            app:layout_constraintVertical_bias="0.562" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/restart_button"
@@ -35,7 +51,10 @@
             android:layout_marginEnd="16dp"
             android:text="@string/restart_button_text"
             app:cornerRadius="8dp"
+            android:backgroundTint="@color/colorYellow"
+            android:textColor="@color/colorNavyBlue"
             app:icon="@drawable/ic_renew"
+            app:iconTint="@color/colorNavyBlue"
             app:layout_constraintBottom_toBottomOf="@id/title_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,15 +66,17 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="@string/hint"
+            android:textColor="@color/colorYellow"
             app:icon="@drawable/ic_hint"
+            app:iconTint="@color/colorYellow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/restart_button" />
 
         <FrameLayout
             android:id="@+id/board_container"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/board_background"
+            android:background="@drawable/frame_background"
             app:layout_constraintTop_toBottomOf="@+id/hint_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +99,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/board_container" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

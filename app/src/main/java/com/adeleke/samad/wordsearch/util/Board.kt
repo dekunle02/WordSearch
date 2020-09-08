@@ -196,51 +196,35 @@ class Board private constructor(dimension: Int, wordsList: List<String>) {
                 }
             }
             else -> {
-                direction = if (x[0] > x[1]) BoardLetterView.LineDirection.LDIAG else BoardLetterView.LineDirection.RDIAG
-                for (i in minX..maxY) {
-                    wordCoordinates.add(intArrayOf(i, i))
+                if ((x[0] > x[1]) && (y[1] > y[0])) {
+                    direction = BoardLetterView.LineDirection.RDIAG
+                    for (i in 0..x[0] - x[1]) {
+                        wordCoordinates.add(intArrayOf(x[0] - i, y[0] + i))
+                    }
+                } else if ((x[1] > x[0]) && (y[0] > y[1])) {
+                    direction = BoardLetterView.LineDirection.RDIAG
+                    for (i in 0..x[1] - x[0]) {
+                        wordCoordinates.add(intArrayOf(x[0] + i, y[0] - i))
+                    }
+                } else if ((x[1] > x[0]) && (y[1] > y[0])) {
+                    direction = BoardLetterView.LineDirection.LDIAG
+                    for (i in 0..x[1] - x[0]) {
+                        wordCoordinates.add(intArrayOf(x[0] + i, y[0] + i))
+                    }
+                } else if ((maxX == x[0]) && (maxY == y[0])) {
+                    direction = BoardLetterView.LineDirection.LDIAG
+                    for (i in 0..x[0] - x[1]) {
+                        wordCoordinates.add(intArrayOf(x[0] - i, y[0] - i))
+                    }
                 }
             }
         }
         println("wordcoordinatesize " + wordCoordinates.size)
-        for (cordinate in wordCoordinates) {
-            println(cordinate.contentToString())
+        for (coordinate in wordCoordinates) {
+            println(coordinate.contentToString())
         }
         return Pair(direction, wordCoordinates)
     }
-
-//
-//fun getWordFromEndPoints(start: String, end: String): MutableList<IntArray> {
-//    val x = intArrayOf(start.split(",")[0].toInt(), end.split(",")[0].toInt())
-//    val y = intArrayOf(start.split(",")[1].toInt(), end.split(",")[1].toInt())
-//
-//    val wordCoordinates = mutableListOf<IntArray>()
-//
-//    val minX = minOf(x[0], x[1])
-//    val maxX = maxOf(x[0], x[1])
-//    val minY = minOf(y[0], y[1])
-//    val maxY = maxOf(y[0], y[1])
-//
-//    when {
-//        x[0] == x[1] -> {
-//            for (i in minY..maxY) {
-//                wordCoordinates.add(intArrayOf(x[0], i))
-//            }
-//        }
-//        y[0] == y[1] -> {
-//            for (i in minX..maxX) {
-//                wordCoordinates.add(intArrayOf(i, y[0]))
-//            }
-//        }
-//        else -> {
-//            for (i in minX..maxY) {
-//                wordCoordinates.add(intArrayOf(i, i))
-//            }
-//        }
-//    }
-//
-//    return wordCoordinates
-//}
 
 }
 

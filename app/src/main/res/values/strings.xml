@@ -3,6 +3,8 @@
     <string name="restart_button_text">Restart</string>
     <string name="help_title">Find hidden words by swiping through the letters on the board.</string>
     <string name="hint">Hint</string>
+    <string name="you_won">You WON!!! Do you want to Play Again?</string>
+    <string name="yes">Yes</string>
 
 
 </resources>

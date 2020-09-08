@@ -26,7 +26,6 @@ class BoardViewMaker(private val context: Context, board: Board ) {
 
 
     init {
-        Log.d(TAG, "BoardViewMaker Init Called")
         setUpBoardView()
         populateBoard()
     }
