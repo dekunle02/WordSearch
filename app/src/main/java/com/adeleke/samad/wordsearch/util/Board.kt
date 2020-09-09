@@ -185,14 +185,26 @@ class Board private constructor(dimension: Int, wordsList: List<String>) {
         when {
             x[0] == x[1] -> {
                 direction = BoardLetterView.LineDirection.HOR
-                for (i in minY..maxY) {
-                    wordCoordinates.add(intArrayOf(x[0], i))
+                if (y[1] > y[0]) {
+                    for (i in minY..maxY) {
+                        wordCoordinates.add(intArrayOf(x[0], i))
+                    }
+                } else{
+                    for (i in maxY downTo minY) {
+                        wordCoordinates.add(intArrayOf(x[0], i))
+                    }
                 }
             }
             y[0] == y[1] -> {
                 direction = BoardLetterView.LineDirection.VERT
-                for (i in minX..maxX) {
-                    wordCoordinates.add(intArrayOf(i, y[0]))
+                if (x[1] > x[0]) {
+                    for (i in minX..maxX) {
+                        wordCoordinates.add(intArrayOf(i, y[0]))
+                    }
+                } else{
+                    for (i in maxX downTo minX) {
+                        wordCoordinates.add(intArrayOf(i, y[0]))
+                    }
                 }
             }
             else -> {
